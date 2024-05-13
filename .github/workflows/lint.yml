@@ -1,0 +1,26 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    name: Format and Vet
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up Git repository
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '>=1.22.2'
+
+    - name: Format Go code
+      run: go fmt ./...
+
+    - name: Vet Go code
+      run: go vet ./...
