@@ -6,7 +6,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	"unsafe"
+	// Uncomment for some unsafe black magic below:
+	// "unsafe"
 	"xor/cipherer"
 )
 
