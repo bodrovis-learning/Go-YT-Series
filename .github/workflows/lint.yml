@@ -19,8 +19,9 @@ jobs:
       with:
         go-version: '>=1.22.2'
 
-    - name: Format Go code
-      run: go fmt ./...
-
-    - name: Vet Go code
-      run: go vet ./...
+    - name: Format and Vet Go code
+      run: |
+        for dir in $(find . -type f -name 'go.mod' | sed 's|/go.mod||'); do
+          echo "Formatting and vetting in $dir"
+          (cd $dir && go fmt ./... && go vet ./...)
+        done
